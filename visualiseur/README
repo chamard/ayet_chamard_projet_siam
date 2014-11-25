@@ -1,0 +1,6 @@
+Pour compiler:
+$ cmake .
+$ make 
+
+Pour lancer le visualiseur:
+$ ./visualiseur
