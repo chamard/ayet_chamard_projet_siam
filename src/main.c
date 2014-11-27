@@ -11,13 +11,7 @@ void test_lancer(){
   puts("***********************");
   puts("TESTS DES FONCTIONS RECENTES");
   puts("***********************");
-  test_type_etre_integre();
-  puts("***********************");
-  test_orientation_etre_integre_deplacement();
-  puts("***********************");
-  test_orientation_caractere_etre_integre();
-  puts("***********************");
-  test_orientation_correspondre_caractere();
+  test_plateau_etre_integre();
   puts("***********************");
   test_piece_etre_integre();
   puts("***********************");
@@ -28,17 +22,18 @@ void test_lancer(){
 int main()
 {  
 
-    type_piece type=elephant;
+    /*plateau_siam plateau;
+    plateau_initialiser(&plateau);
+        
+    piece_siam* p1=plateau_obtenir_piece(&plateau,2,3);
     
-    printf("%d\n", type);
-    int est_ce_un_elephant = (type==elephant);
-    int est_ce_un_rocher = (type==rocher);
-    printf("%d %d\n", est_ce_un_elephant, est_ce_un_rocher);
+    piece_afficher(p1);puts(" ");
+    p1->type=rocher;
+    piece_afficher(p1);puts(" ");
     
-    const char* nom_du_type=type_nommer(type);
-    printf("Le type est un %s. \n", nom_du_type);
+    plateau_afficher(&plateau);puts(" ");
     
-    printf("Le type est un %s. \n", type_nommer(rocher));
+    */
     
     test_lancer();
     
