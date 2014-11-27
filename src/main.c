@@ -1,7 +1,11 @@
 
 #include "piece_siam.h"
-#include <stdio.h>
+#include "plateau_siam.h"
+#include "jeu_siam.h"
+#include "api_siam.h"
+#include "mode_interactif.h"
 
+#include <stdio.h>
 
 void test_lancer(){
   puts("***********************");
@@ -15,8 +19,11 @@ void test_lancer(){
   puts("***********************");
   test_orientation_correspondre_caractere();
   puts("***********************");
+  test_piece_etre_integre();
+  puts("***********************");
+  test_piece_etre_un_animal();
+  puts("***********************");
 }
-
 
 int main()
 {  
@@ -34,6 +41,9 @@ int main()
     printf("Le type est un %s. \n", type_nommer(rocher));
     
     test_lancer();
+    
+       
+    
     
        return 0;
 }

@@ -151,12 +151,28 @@ int piece_etre_case_vide(const piece_siam* piece);
 void piece_definir(piece_siam* piece,type_piece type,orientation_deplacement orientation);
 
 /**
- * Documentation a ecrire
+ * Fonction piece_definir_rocher:
+ *  **************************
+ * Definie un rocher directement a l'aide de la fonction piece_definir
+ * Necessite:
+ * 	-Un pointeur non NULL vers une piece_siam modifiable
+ * 
+ * Garantie:
+ * 	-Une piece de type rocher avec comme orientation aucune_orientation
+ * 	-Cette piece doit etre integre
  */
 void piece_definir_rocher(piece_siam* piece);
 
 /**
- * Documentation a ecrire
+ * Fonction piece_definir_rocher:
+ *  **************************
+ * Definie une case vide directement a l'aide de la fonction piece_definir
+ * Necessite:
+ * 	-Un pointeur non NULL vers une piece_siam modifiable
+ * 
+ * Garantie:
+ * 	-Une piece de type case_vide avec comme orientation aucune_orientation
+ * 	-Cette piece doit etre integre
  */
 void piece_definir_case_vide(piece_siam* piece);
 
@@ -204,10 +220,43 @@ void piece_afficher(const piece_siam* piece);
 void piece_afficher_nom_cours(const piece_siam* piece);
 
 /**
- * Documentation a ecrire
+ * Fonction piece_afficher:
+ * *************************
+ *   Transforme une chaine de caractere en une piece piece_siam avec un type et une orientation. 
+ *
+ *    Necessite:
+ *      - Un pointeur non NULL non modifiable vers un tableau de caractere.
+ *    Garantie:
+ *      - En fonction du tableau de caractère rentré,renvoi l'equivalent piece_siam si il s'agit d'un 
+ * rocher,d'une case vide,ou d'un animal; et un message d'erreur sinon.
  */
 piece_siam piece_correspondre_nom_cours(const char* nom_cours);
 
+void test_piece_etre_integre();
+/**
+ * Fonction test_piece_etre_integre:
+ * *************************
+ *   Test la fonction piece_etre_integre dans une situation correcte et une situation incorecte 
+ *
+ *    Necessite:
+ *      - rien
+ *    Garantie:
+ *      - La fonction est correcte si on a deux fois "OK" qui s'affiche. 
+ *
+ */
 
+void test_piece_etre_un_animal();
+/**
+ * Fonction test_piece_etre_un_animal:
+ * *************************
+ *   Test la fonction piece_etre_animal dans une situation correcte et une situation incorecte 
+ *
+ *    Necessite:
+ *      - rien
+ *    Garantie:
+ *      - La fonction est correcte si on a deux fois "OK" qui s'affiche. 
+ * Le test pour les fonctions piece_etre_case_vide et piece_etre_rocher est tres similaire seul un  parametre change.
+
+ */
 
 #endif

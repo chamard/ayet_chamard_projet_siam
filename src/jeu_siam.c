@@ -56,8 +56,13 @@ void jeu_changer_joueur(jeu_siam* jeu)
 
 int jeu_verifier_type_piece_a_modifier(const jeu_siam* jeu,int x,int y)
 {
-    return 1;//coder cette fonction
-
+    assert(jeu!=NULL);
+    if (jeu->joueur==0 && ((jeu->plateau).piece[x][y]).type==elephant)
+    return 1;
+    if (jeu->joueur==1 && ((jeu->plateau).piece[x][y]).type==rhinoceros) 
+    return 1;
+    
+    return 0;
 }
 
 void jeu_afficher(const jeu_siam* jeu)
@@ -73,6 +78,10 @@ void jeu_afficher(const jeu_siam* jeu)
 
 type_piece jeu_obtenir_type_animal_courant(const jeu_siam* jeu)
 {
-    return elephant;// coder cette fonction
+     assert(jeu!=NULL);
+     if(jeu->joueur==0)
+       return elephant;
+     if(jeu->joueur==1);
+      return rhinoceros;
 }
 
