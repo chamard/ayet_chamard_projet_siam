@@ -81,7 +81,7 @@ type_piece jeu_obtenir_type_animal_courant(const jeu_siam* jeu)
      assert(jeu!=NULL);
      if(jeu->joueur==0)
        return elephant;
-     if(jeu->joueur==1);
+     if(jeu->joueur==1)
       return rhinoceros;
 }
 

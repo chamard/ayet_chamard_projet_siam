@@ -70,7 +70,11 @@
  */
 #define NBR_ANIMAUX 5
 
-
+/**
+ * Il y a 5 cases par ligne ou par colone sur le plateu
+ * 
+ */
+#define NBR_CASES 5
 
 /**
  *  Un plateau_siam est un conteneur permettant de stocker les pieces
@@ -224,5 +228,9 @@ const piece_siam* plateau_obtenir_piece_info(const plateau_siam* plateau,int x,i
  */
 void plateau_afficher(const plateau_siam* plateau);
 
+/**
+ * Fonctions tests
+ */
+void test_plateau_etre_integre();
 
 #endif
