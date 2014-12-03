@@ -17,6 +17,9 @@ void test_lancer(){
   puts("***********************");
   test_piece_etre_un_animal();
   puts("***********************");
+  test_plateau_exister_piece();
+  puts("***********************");
+  test_coordonnees_etre_bordure_plateau();
 }
 
 int main()

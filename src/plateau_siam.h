@@ -232,5 +232,6 @@ void plateau_afficher(const plateau_siam* plateau);
  * Fonctions tests
  */
 void test_plateau_etre_integre();
+void test_plateau_exister_piece();
 
 #endif

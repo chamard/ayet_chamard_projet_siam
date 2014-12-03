@@ -140,7 +140,10 @@ int plateau_denomber_type(const plateau_siam* plateau,type_piece type)
 
 int plateau_exister_piece(const plateau_siam* plateau,int x,int y)
 {
-    return 1; //coder cette fonction
+   if(plateau->piece[x][y].type==case_vide)
+     return 0;
+   else
+     return 1;
 }
 
 void plateau_afficher(const plateau_siam* plateau)
@@ -204,7 +207,18 @@ void test_plateau_etre_integre()
     puts("Nous testons ce plateau :");
     plateau_afficher(&plateau_test);puts(" ");
     if(plateau_etre_integre(&plateau_test)!=1)
-      puts("***KO***");
-    
-   
+      puts("***KO***");  
+}
+
+void test_plateau_exister_piece(){
+   puts("test_plateau_exister_piece");
+  
+  plateau_siam plateau_test;
+  plateau_initialiser(&plateau_test);
+  
+  if(plateau_exister_piece(&plateau_test,0,0)==0)
+      puts("***OK***");
+  
+  if(plateau_exister_piece(&plateau_test,2,2)==1)
+      puts("***OK***"); 
 }

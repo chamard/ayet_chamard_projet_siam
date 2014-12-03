@@ -13,7 +13,10 @@ int coordonnees_etre_dans_plateau(int x,int y)
 
 int coordonnees_etre_bordure_plateau(int x,int y)
 {
-    return 1; //coder cette fonction
+  if(x==0||y==0||x==NBR_CASES||y==NBR_CASES)
+    return 1;
+  else  
+    return 0;
 }
 
 void coordonnees_appliquer_deplacement(int* x,int* y,orientation_deplacement orientation)
@@ -47,6 +50,14 @@ void coordonnees_appliquer_deplacement(int* x,int* y,orientation_deplacement ori
     }
 }
 
+void test_coordonnees_etre_bordure_plateau(){
+  puts("test_coordonnees_etre_bordure_plateau");
+  
+  if(coordonnees_etre_bordure_plateau(0,3)==1)
+    puts("***OK***");
+  if(coordonnees_etre_bordure_plateau(2,3)==0)
+    puts("***OK***");
+}
 
 
 

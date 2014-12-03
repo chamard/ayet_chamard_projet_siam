@@ -86,10 +86,24 @@ int coordonnees_etre_dans_plateau(int x,int y);
 int coordonnees_etre_bordure_plateau(int x,int y);
 
 /**
- * documentation a ecrire
+ Fonction coordonnees_appliquer_deplacement:
+ * *************************
+ *    Applique un déplacement aux coordonees envoyées en parametre.
+ *
+ *    Necessite:
+ *      - Deux coordonnees entieres et une orientation_deplacement
+ *      -Trois assert vérifient que les coordonees ne sont pas NULL et
+ *       que  l'orientation_deplacement est integre
+ *    Garantie:
+ *      -un message s'il y a un probleme
  */
 void coordonnees_appliquer_deplacement(int* x,int* y,orientation_deplacement orientation);
 
+/**
+ * Fonction test
+ * 
+ */
+void test_coordonnees_etre_bordure_plateau();
 
 
 
