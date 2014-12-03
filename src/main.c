@@ -1,4 +1,4 @@
-
+#include "plateau_modification.h"
 #include "piece_siam.h"
 #include "plateau_siam.h"
 #include "jeu_siam.h"
@@ -17,6 +17,9 @@ void test_lancer(){
   puts("***********************");
   test_piece_etre_un_animal();
   puts("***********************");
+  test_jeu_verifier_type_piece_a_modifier();
+  puts("***********************");
+  test_plateau_modification_changer_orientation_piece_etre_possible();
 }
 
 int main()
@@ -36,7 +39,7 @@ int main()
     */
     
     test_lancer();
-    
+    mode_interactif_lancer();
        
     
     

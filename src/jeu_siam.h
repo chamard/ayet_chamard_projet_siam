@@ -140,7 +140,7 @@ int jeu_verifier_type_piece_a_modifier(const jeu_siam* jeu,int x,int y);
  *      - Le type d'animal correspondant au joueur courant.
  */
 type_piece jeu_obtenir_type_animal_courant(const jeu_siam* jeu);
-
+void test_jeu_verifier_type_piece_a_modifier();
 
 
 #endif
