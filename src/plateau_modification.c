@@ -29,14 +29,22 @@ void plateau_modification_introduire_piece(plateau_siam* plateau,
 
 int plateau_modification_changer_orientation_piece_etre_possible(plateau_siam* plateau,int x0,int y0,orientation_deplacement orientation)
 {
-    return 1;//coder cette fonction
+  
+  assert(plateau!=NULL);
+  if (piece_etre_animal(&(plateau->piece[x0][y0]))==0)
+       return 0;
+  if(plateau->piece[x0][y0].orientation==orientation)
+       return 0;
+  return 1;
 }
 
 
 
 void plateau_modification_changer_orientation_piece(plateau_siam* plateau,int x0,int y0,orientation_deplacement orientation)
 {
-    //coder cette fonction
+    if (plateau_modification_changer_orientation_piece_etre_possible(plateau,x0,y0,orientation)==1)
+      plateau->piece[x0][y0].orientation=orientation;
+         
 }
 
 
@@ -58,4 +66,20 @@ void plateau_modification_deplacer_piece(plateau_siam* plateau,
     //coder cette fonction
 }
 
+void test_plateau_modification_changer_orientation_piece_etre_possible()
+{
+    puts("plateau_modification_changer_orientation_piece_etre_possible");
+    
+    plateau_siam plateau_test;
+    plateau_initialiser(&plateau_test);
 
+   
+    plateau_test.piece[0][0].type=rhinoceros;
+    plateau_test.piece[0][0].orientation=haut;
+    if(plateau_modification_changer_orientation_piece_etre_possible(&plateau_test,0,0,bas)==1)
+	puts("***OK***");
+    if(plateau_modification_changer_orientation_piece_etre_possible(&plateau_test,0,0,haut)==0)
+	puts("***OK***");
+    if(plateau_modification_changer_orientation_piece_etre_possible(&plateau_test,0,1,bas)==0)
+	puts("***OK***");   
+}

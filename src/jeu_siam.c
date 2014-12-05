@@ -86,3 +86,37 @@ type_piece jeu_obtenir_type_animal_courant(const jeu_siam* jeu)
      return -1;
 }
 
+void test_jeu_verifier_type_piece_a_modifier()
+{
+  puts("test jeu_verifier_type_piece_a_modifier");
+  const jeu_siam* jeu;
+  
+  jeu_siam jeu1;
+  jeu1.joueur=0;
+  jeu=&jeu1;
+	(jeu1.plateau).piece[2][3].type=elephant;
+  
+		    if (jeu_verifier_type_piece_a_modifier(jeu,2,3)==1)
+		      puts("OK");
+		      
+		    if (jeu_verifier_type_piece_a_modifier(jeu,3,2)==0)
+		      puts("OK");
+		    
+	(jeu1.plateau).piece[2][3].type=rhinoceros;
+		    
+		    if (jeu_verifier_type_piece_a_modifier(jeu,2,3)==0)
+		      puts("OK");
+   
+   jeu_siam jeu2;
+   jeu2.joueur=1;
+   jeu=&jeu2;
+	(jeu2.plateau).piece[2][3].type=elephant;
+   
+		    if (jeu_verifier_type_piece_a_modifier(jeu,2,3)==0)
+		      puts("OK");
+		    
+	(jeu2.plateau).piece[2][3].type=rhinoceros;
+		    
+		    if (jeu_verifier_type_piece_a_modifier(jeu,2,3)==1)
+		      puts("OK");
+}

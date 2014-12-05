@@ -1,4 +1,4 @@
-
+#include "plateau_modification.h"
 #include "piece_siam.h"
 #include "plateau_siam.h"
 #include "jeu_siam.h"
@@ -20,6 +20,11 @@ void test_lancer(){
   test_plateau_exister_piece();
   puts("***********************");
   test_coordonnees_etre_bordure_plateau();
+  puts("***********************");
+  test_jeu_verifier_type_piece_a_modifier();
+  puts("***********************");
+  test_plateau_modification_changer_orientation_piece_etre_possible();
+
 }
 
 int main()
@@ -36,7 +41,8 @@ int main()
     
     plateau_afficher(&plateau);puts(" ");
     
-    */
+    
+    mode_interactif_lancer();*/
     
     test_lancer();
     

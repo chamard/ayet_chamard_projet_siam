@@ -206,6 +206,11 @@ int plateau_modification_deplacer_piece_etre_possible(const plateau_siam* platea
  */
 void plateau_modification_deplacer_piece(plateau_siam* plateau,int x0,int y0,orientation_deplacement deplacement,orientation_deplacement orientation_final,condition_victoire_partie* condition_victoire);
 
-
+/**
+ * 
+ * Fonction test
+ * 
+ */
+void test_plateau_modification_changer_orientation_piece_etre_possible();
 
 #endif
