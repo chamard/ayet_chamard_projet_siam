@@ -150,7 +150,7 @@ int plateau_etre_integre(const plateau_siam* plateau);
  *         valant le type donne en parametre.
  *
  */
-int plateau_denomber_type(const plateau_siam* plateau,type_piece type);
+int plateau_denombrer_type(const plateau_siam* plateau,type_piece type);
 
 
 

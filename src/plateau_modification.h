@@ -164,7 +164,7 @@ void plateau_modification_changer_orientation_piece(plateau_siam* plateau,int x0
  *    Verifie si il est possible de deplacer une piece sur le plateau.
  *    Le deplacement est possible si:
  *     - les coordonnees designent une piece modifiable par le joueur
- *       courant.
+ *       courant. API
  *     - la direction de deplacement et la nouvelle orientation est
  *       compatible avec les regles du jeu.
  *
@@ -187,10 +187,10 @@ int plateau_modification_deplacer_piece_etre_possible(const plateau_siam* platea
  *     de jeu en supposant que ce deplacement soit valide.
  *
  *    Necessite:
- *      - Un pointeur non NULL vers un plateau integre modifiable.
+ *      - Un pointeur non NULL vers un plateau integre modifiable. ok
  *      - Deux coordonnees entieres (x,y) designant une piece
- *         de type animal du plateau.
- *      - Une orientation de deplacement integre d'une piece.
+ *         de type animal du plateau.ok
+ *      - Une orientation de deplacement integre d'une piece.ok
  *      - Une orientation integre d'une piece (apres deplacement).
  *      - Un pointeur non NULL vers une condition_victoire_partie
  *         modifiable.

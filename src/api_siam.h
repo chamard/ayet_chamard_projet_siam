@@ -92,7 +92,7 @@
  *         le jeu est mise a jour et la structure coup_jeu indique la validite
  *         du coup.
  *      - Si le coup n'est pas possible, le jeu n'est pas mis a jour et
- *         coup_jeu indique que le coup n'est pas valide.
+ *         coup_jeu indique que le coup n'est pas valide (0).
  */
 coup_jeu api_siam_tenter_introduire_nouvelle_piece_si_possible(jeu_siam* jeu,int x,int y,orientation_deplacement orientation);
 

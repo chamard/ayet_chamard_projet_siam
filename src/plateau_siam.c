@@ -17,12 +17,15 @@ void plateau_initialiser(plateau_siam* plateau)
     //
     // L'etat de l'echiquier initial est le suivant:
     //
+    //  y
+    //  ^
+    //  |
     // [4] *** | *** | *** | *** | *** |
     // [3] *** | *** | *** | *** | *** |
     // [2] *** | RRR | RRR | RRR | *** |
     // [1] *** | *** | *** | *** | *** |
     // [0] *** | *** | *** | *** | *** |
-    //     [0]   [1]   [2]   [3]   [4]
+    //     [0]   [1]   [2]   [3]   [4]----->x
     //
 
 
@@ -47,43 +50,44 @@ void plateau_initialiser(plateau_siam* plateau)
 
 int plateau_etre_integre(const plateau_siam* plateau)
 {
-    assert(plateau!=NULL);
-    
-    int compteur_rocher=0,compteur_rhino=0,compteur_elephant=0,compteur_vide=0;
+   assert(plateau!=NULL);
+
+
+    // Verification de l'integrite en 4 etapes:
+    //  1. Verification que l'ensemble des pieces du plateau
+    //     sont integres.
+    //  2. Verification du nombre d'elephants.
+    //  3. Verification du nombre de rhinoceros.
+    //  4. Verification du nombre de rochers.
+
+
     int kx=0;
-    
-    
     for(kx=0;kx<NBR_CASES;++kx)
     {
         int ky=0;
-	for(ky=0;ky<NBR_CASES;++ky)
-	{
-	  const piece_siam* piece=plateau_obtenir_piece_info(plateau,kx,ky);
-	  assert(piece!=NULL);
-	  
-	  switch(piece->type)
-	  {
-	    case elephant:
-	      compteur_elephant++;
-	      break;
-	    case rhinoceros:
-	      compteur_rhino++;
-	      break;
-	    case rocher:
-	      compteur_rocher++;
-	      break;
-	    case case_vide:
-	      compteur_vide++;
-	      break;
-	   }
-	 }	  
+        for(ky=0;ky<NBR_CASES;++ky)
+        {
+            const piece_siam* piece=plateau_obtenir_piece_info(plateau,kx,ky);
+            assert(piece!=NULL);
+
+            if(piece_etre_integre(piece)==0)
+                return 0;
+        }
     }
-    printf("%d %d %d",compteur_rocher,compteur_elephant,compteur_rhino);
-    if(compteur_rocher>3||compteur_elephant>5||compteur_rhino>5)
-    {
-      return 0;
-    }
-    
+
+    int nbr_elephant=plateau_denombrer_type(plateau,elephant);
+    int nbr_rhino=plateau_denombrer_type(plateau,rhinoceros);
+    int nbr_rocher=plateau_denombrer_type(plateau,rocher);
+
+    if(nbr_elephant<0 || nbr_elephant>NBR_ANIMAUX)
+        return 0;
+    if(nbr_rhino<0 || nbr_rhino>NBR_ANIMAUX)
+        return 0;
+    if(nbr_rocher<0 || nbr_rocher>NBR_ROCHERS)
+        return 0;
+
+
+
     return 1;
 }
 
@@ -108,42 +112,50 @@ const piece_siam* plateau_obtenir_piece_info(const plateau_siam* plateau,int x,i
 }
 
 
-int plateau_denomber_type(const plateau_siam* plateau,type_piece type)
+int plateau_denombrer_type(const plateau_siam* plateau,type_piece type)
 {
     assert(plateau!=NULL);
-    //Algorithme:
+
+
+    // Algorithme:
     //
-    //Initialiser compteur <-0
-    //pour toutes les cases du tableau
-    //	si case courante est type du tableau
-    //		Incremente compteur
-    //Renvoie compteur
-    
+    //  Initialiser compteur <- 0
+    //  Pour toutes les cases du tableau
+    //     Si case courante est du type souhaite
+    //        Incremente compteur
+    //  Renvoie compteur
+
+
     int compteur=0;
     int kx=0;
-    
-    
+
     for(kx=0;kx<NBR_CASES;++kx)
     {
         int ky=0;
-	for(ky=0;ky<NBR_CASES;++ky)
-	{
-	  const piece_siam* piece=plateau_obtenir_piece_info(plateau,kx,ky);
-	  assert(piece!=NULL);
-	  
-	  if(piece->type==type)
-	    compteur++;	  
-	}	  
+        for(ky=0;ky<NBR_CASES;++ky)
+        {
+            const piece_siam* piece=plateau_obtenir_piece_info(plateau,kx,ky);
+            assert(piece!=NULL);
+
+            if(piece->type==type)
+                compteur++;
+        }
     }
+
     return compteur;
 }
 
 int plateau_exister_piece(const plateau_siam* plateau,int x,int y)
 {
-   if(plateau->piece[x][y].type==case_vide)
-     return 0;
-   else
-     return 1;
+    assert(plateau!=NULL);
+    assert(coordonnees_etre_dans_plateau(x,y));
+
+    const piece_siam* piece=plateau_obtenir_piece_info(plateau,x,y);
+    assert(piece!=NULL);
+
+    if(piece->type!=case_vide)
+        return 1;
+    return 0;
 }
 
 void plateau_afficher(const plateau_siam* plateau)
