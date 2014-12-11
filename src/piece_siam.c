@@ -13,7 +13,6 @@ int piece_etre_integre(const piece_siam* piece)
      if ((piece->type==rocher || piece->type==case_vide) && (piece->orientation==aucune_orientation))
        return 1;
     
-    
     return 0;
 }
 

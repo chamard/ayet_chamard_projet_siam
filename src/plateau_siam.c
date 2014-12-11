@@ -17,12 +17,15 @@ void plateau_initialiser(plateau_siam* plateau)
     //
     // L'etat de l'echiquier initial est le suivant:
     //
+    //  y
+    //  ^
+    //  |
     // [4] *** | *** | *** | *** | *** |
     // [3] *** | *** | *** | *** | *** |
     // [2] *** | RRR | RRR | RRR | *** |
     // [1] *** | *** | *** | *** | *** |
     // [0] *** | *** | *** | *** | *** |
-    //     [0]   [1]   [2]   [3]   [4]
+    //     [0]   [1]   [2]   [3]   [4]----->x
     //
 
 
@@ -109,7 +112,7 @@ const piece_siam* plateau_obtenir_piece_info(const plateau_siam* plateau,int x,i
 }
 
 
-int plateau_denomber_type(const plateau_siam* plateau,type_piece type)
+int plateau_denombrer_type(const plateau_siam* plateau,type_piece type)
 {
     assert(plateau!=NULL);
 
