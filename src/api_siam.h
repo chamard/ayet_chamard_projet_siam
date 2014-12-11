@@ -99,7 +99,7 @@ coup_jeu api_siam_tenter_introduire_nouvelle_piece_si_possible(jeu_siam* jeu,int
 /**
  * Fonction api_siam_tenter_deplacer_piece_si_possible:
  * *************************
- *    Tente de deplacement une nouvelle piece du jeu sur le plateau avec un
+ *    Tente de deplacer une nouvelle piece du jeu sur le plateau avec un
  *     changement d'orientation possible.
  *
  *    Le deplacement est possible si:

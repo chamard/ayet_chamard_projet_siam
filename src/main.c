@@ -30,20 +30,22 @@ void test_lancer(){
 int main()
 {  
 
-    /*plateau_siam plateau;
-    plateau_initialiser(&plateau);
+    //plateau_siam plateau;
+    //plateau_initialiser(&plateau);
+    jeu_siam JEU;
+    jeu_siam * jeu=&JEU;
+    jeu_initialiser(jeu);
         
-    piece_siam* p1=plateau_obtenir_piece(&plateau,2,3);
+   // piece_siam* p1=plateau_obtenir_piece(&plateau,2,3);
     
-    piece_afficher(p1);puts(" ");
-    p1->type=rocher;
-    piece_afficher(p1);puts(" ");
+   // piece_afficher(p1);puts(" ");
+    //p1->type=rocher;
+    //piece_afficher(p1);puts(" ");
     
-    plateau_afficher(&plateau);puts(" ");
+    //plateau_afficher(&plateau);puts(" ");
     
     
-    mode_interactif_lancer();*/
-    
+    mode_interactif_lancer();
     test_lancer();
     
        

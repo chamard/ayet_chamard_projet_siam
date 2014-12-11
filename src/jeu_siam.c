@@ -36,6 +36,9 @@ void jeu_initialiser(jeu_siam* jeu)
 
     plateau_initialiser(&jeu->plateau);
     jeu->joueur=0;
+     
+    
+    
 }
 
 
