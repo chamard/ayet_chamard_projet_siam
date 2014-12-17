@@ -34,6 +34,7 @@
  *aux coordonnees(x,y) dans l'orientation  definie.
  *Note: Les coordonnees (x,y) designent la premiere piece rencontree 
  *dans la poussee.
+ *
  * Necessite:
  *-Un pointeur non NULL vers un plateau integre non modifiable. 
  * - Deux coordonnees entieres (x,y) designant une piece non 

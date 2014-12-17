@@ -11,23 +11,13 @@
 int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_deplacement orientation_pousse)
 {
   
- /* On ne peut pousser que dans la direction correspondant à l'orientation de l'animal.
+ /*
+  * algorthime
   * 
-  * 
-  * On peut pousser autant d'objets(rocher ou animal) se succédant dans une direction X 
-  * si les animaux ont la même orientation X, se succéde, sont  aligné 
-  * et ou l'un des animaux pousseurs touche l'objet et que le compte est positif.
-  * 
-  * Un rocher vaut -1  
-  * Un animal dans la bonne direction X vaut 1
-  * Un animal dans la direction tangente a X vaut 0
-  * Un animal dans la bonne direction -X vaut -1
-  * 
-  * 
-  * 
-  * 
-  * 
-  * 
+  * 1. Si l'orrientation de pousse et différente de l'orientation de la piece alors pousse invalide
+  * 2. Si l'orriantation des pieces n'est pas compatible avec une poussé alors pousse invalide
+  * 3. Si la confrontation est impossible (rochers vs pousseurs) alors pousse invalide
+  * 4. Sinon pousse valide
   * 
   */
   return 0;
@@ -35,7 +25,13 @@ int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_dep
 
 plateau_siam poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orientation_deplacement orientation,condition_victoire_partie* condition)
 {
-  
+  /*
+   * algorthime 
+   * 
+   * 1. Vérifie si la pousse est possible
+   * 2 .Si possible alors effectue la pousse
+   * 
+   */
  
   return *plateau;
 }

@@ -32,11 +32,20 @@ coup_jeu api_siam_tenter_deplacer_piece_si_possible(jeu_siam* jeu,
                                                     int x,int y,
                                                     orientation_deplacement deplacement,
                                                     orientation_deplacement orientation)
-{
-    //coder cette fonction
+{ 
     coup_jeu coup;
     coup_jeu_initialiser(&coup);
+    
+    if(plateau_modification_deplacer_piece_etre_possible(&jeu->plateau,x,y,deplacement,orientation)==0)
+    {
+      coup.valide=0;
+      return coup; 
+    }
+    else{
+    plateau_modification_deplacer_piece(&jeu->plateau,x,y,deplacement,orientation,&coup.condition_victoire);                    
+    coup.valide=1;
     return coup;
+    }
 }
 
 
@@ -50,9 +59,6 @@ coup_jeu api_siam_tenter_changer_orientation_piece_si_possible(jeu_siam* jeu,int
     coup_jeu_initialiser(&coup);
     
     coup.valide=1;
-    
-    
-    piece_siam* Piece=plateau_obtenir_piece(&jeu->plateau,x,y);
     
      if(jeu_verifier_type_piece_a_modifier(jeu,x,y)==0)
      {

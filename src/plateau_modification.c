@@ -193,6 +193,9 @@ void plateau_modification_deplacer_piece(plateau_siam* plateau,
    piece->type=aucune_orientation;
    
    //Post conditions
+   assert(plateau_etre_integre(plateau));
+   assert(piece_etre_animal(&plateau->piece[x1][y1]));
+     
      
 }
 
