@@ -1,7 +1,7 @@
 #include "plateau_modification.h"
 #include "coordonnees_plateau.h"
 #include "piece_siam.h"
-
+#include "pousse.h"
 
 #include <assert.h>
 #include <stdlib.h>
@@ -136,22 +136,31 @@ int plateau_modification_deplacer_piece_etre_possible(const plateau_siam* platea
 
     //Algorithme:
     //
+    
+    int x1=x0,y1=y0;
+    
+    if(poussee_etre_valide(plateau,x0,y0,orientation_deplacement)==0)
+      return 0;
+    
     if(direction_deplacement==haut)
-      y0++;
+      y1++;
     if(direction_deplacement==bas)
-      y0--;
+      y1--;
     if(direction_deplacement==droite)
-      x0++;
+      x1++;
     if(direction_deplacement==gauche)
-      x0--;
+      x1--;
     
-    if(coordonnees_etre_dans_plateau(x0,y0)==0)
+    
+    
+    if(coordonnees_etre_dans_plateau(x1,y1)==0)
       return 0;
     
-    if(plateau_obtenir_piece_info(plateau,x0,y0)->type!=case_vide)
-      return 0;
-    else
+    if(plateau_obtenir_piece_info(plateau,x1,y1)->type==case_vide)
       return 1;
+    if(poussee_etre_valide(plateau,x0,y0,orientation_deplacement)==0)
+      return 0;
+    return 1;
 }
 
 
@@ -174,17 +183,29 @@ void plateau_modification_deplacer_piece(plateau_siam* plateau,
    
    int x1=x0,y1=y0;
    
-   if(direction_deplacement==haut)
-      y1++;
-   if(direction_deplacement==bas)
-      y1--;
-   if(direction_deplacement==droite)
-      x1++;
-   if(direction_deplacement==gauche)
-      x1--;
+   piece_siam* tampon=plateau_obtenir_piece(plateau,x0,y0);
    
-   piece_siam* piece=plateau_obtenir_piece(plateau,x0,y0);
-   piece_siam* piece_fin=plateau_obtenir_piece(plateau,x1,y1);
+   switch(direction_deplacement==haut){
+     case haut:
+       do{
+       tampon=plateau_obtenir_piece(plateau,x0,y1+1);
+       plateau_obtenir_piece(plateau,x0,y1+1)->orientation=plateau_obtenir_piece(plateau,x0,y1);
+       y1++;
+       }while(y1<NBR_CASES);
+     case bas:
+       do{
+       plateau_obtenir_piece(plateau,x0,y1-1)->orientation=plateau_obtenir_piece(plateau,x0,y1);
+       y1++;
+       }while(y1>=0);
+     case droite:
+       piece_siam* piece_fin=plateau_obtenir_piece(plateau,NBR_CASES-1,y0);
+       
+     case gauche:
+       piece_siam* piece_fin=plateau_obtenir_piece(plateau,0,y0);
+       
+   }
+   
+   
 
    piece_fin->orientation=orientation_final;
    piece->orientation=aucune_orientation;
