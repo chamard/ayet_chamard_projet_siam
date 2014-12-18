@@ -2,6 +2,7 @@
 #include "joueur.h"
 #include "plateau_modification.h"
 #include "condition_victoire_partie.h"
+#include "pousse.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,7 +11,7 @@
 
 int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_deplacement orientation_pousse)
 {
-  
+   
  /*
   * algorthime
   * 

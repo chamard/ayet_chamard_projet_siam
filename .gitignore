@@ -13,4 +13,5 @@ piece_siam.o
 plateau_modification.o
 plateau_siam.o
 type_piece.o
+pousse.o
 .DS_Store

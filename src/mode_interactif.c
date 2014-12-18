@@ -1,5 +1,4 @@
 
-
 #include "mode_interactif.h"
 #include "api_siam.h"
 #include "parseur_mode_interactif.h"

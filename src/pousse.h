@@ -57,7 +57,7 @@ int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_dep
  * 
  * Necessite: 
  * - Un pointeur non NULL vers un plateau integre modifiable. 
- *-Deux coordonnees entieres (x,y) designant une piece non 
+ * -Deux coordonnees entieres (x,y) designant une piece non 
  *  vide integre du plateau.
  * - Un type d'animal a deplacer. 
  * - Une orientation de poussee designant une direction integre. 

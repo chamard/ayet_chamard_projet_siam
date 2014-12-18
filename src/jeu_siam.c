@@ -1,6 +1,5 @@
 #include "jeu_siam.h"
 #include "joueur.h"
-
 #include "entree_sortie.h"
 
 #include <assert.h>
