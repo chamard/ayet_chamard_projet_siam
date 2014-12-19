@@ -110,11 +110,11 @@ void ligne_de_commande_parser(const char* ligne_commande,action_a_realiser* acti
 
     else if(strlen(ligne_commande)>=4 && strncmp(ligne_commande,"lit ",4)==0)
     {
-        char buffer_filename[MAX_NOM_FICHIER_TAILLE];
-        if(sscanf(ligne_commande,"lit %s",buffer_filename)==1)
+        char buffer_filename[MAX_NOM_FICHIER_TAILLE]; // MAX_NOM_FICHIER_TAILLE est definir globalement (#define)
+        if(sscanf(ligne_commande,"lit %s",buffer_filename)==1) // Ecriture de buffer_filename en fonction de  ligne_commande
         {
             action->type_action=lecture_fichier;
-            strncpy(action->filename,buffer_filename,128);
+            strncpy(action->filename,buffer_filename,128);// 128 car c'est la taille de MAX_NOM_FICHIER_TAILLE
             return ;
         }
     }
