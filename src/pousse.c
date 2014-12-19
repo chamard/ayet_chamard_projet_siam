@@ -38,7 +38,7 @@ piece_p=plateau_obtenir_piece_info(plateau,x,y);
    
    case haut:
         
-     while(piece_p->type!=case_vide ||y+piece_suivante<NBR_CASES-1||force_poussee!=0)
+     while(piece_p->type!=case_vide ||y+piece_suivante<NBR_CASES||force_poussee!=0)
      {
       piece_p=plateau_obtenir_piece_info(plateau,x,y+piece_suivante);
       if (piece_p->orientation==haut)
@@ -58,7 +58,7 @@ piece_p=plateau_obtenir_piece_info(plateau,x,y);
       
    case bas:
      
-     while(piece_p->type!=case_vide ||y-piece_suivante>0||force_poussee!=0)
+     while(piece_p->type!=case_vide ||y-piece_suivante>=0||force_poussee!=0)
      {
       piece_p=plateau_obtenir_piece_info(plateau,x,y-piece_suivante);
       if (piece_p->orientation==haut)
@@ -76,14 +76,14 @@ piece_p=plateau_obtenir_piece_info(plateau,x,y);
      if(force_poussee<=1)
        return 0;
            
-   case gauche:
+   case droite:
           
-     while(piece_p->type!=case_vide ||x+piece_suivante<NBR_CASES-1||force_poussee!=0)
+     while(piece_p->type!=case_vide ||x+piece_suivante<NBR_CASES||force_poussee!=0)
      {
       piece_p=plateau_obtenir_piece_info(plateau,x+piece_suivante,y);
-      if (piece_p->orientation==gauche)
-	force_poussee=force_poussee+1;
       if (piece_p->orientation==droite)
+	force_poussee=force_poussee+1;
+      if (piece_p->orientation==gauche)
 	force_poussee=force_poussee-1;
       if (piece_p->type==rocher)
 	force_poussee=force_poussee-0.99;
@@ -96,14 +96,14 @@ piece_p=plateau_obtenir_piece_info(plateau,x,y);
      if(force_poussee<=1)
        return 0;
      
-   case droite:
+   case gauche:
             
-     while(piece_p->type!=case_vide ||x-piece_suivante>0||force_poussee!=0)
+     while(piece_p->type!=case_vide ||x-piece_suivante>=0||force_poussee!=0)
      {
       piece_p=plateau_obtenir_piece_info(plateau,x-piece_suivante,y);
-      if (piece_p->orientation==gauche)
-	force_poussee=force_poussee-1;
       if (piece_p->orientation==droite)
+	force_poussee=force_poussee-1;
+      if (piece_p->orientation==gauche)
 	force_poussee=force_poussee+1;
       if (piece_p->type==rocher)
 	force_poussee=force_poussee-0.99;
