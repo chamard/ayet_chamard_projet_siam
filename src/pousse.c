@@ -2,12 +2,8 @@
 #include "joueur.h"
 #include "plateau_modification.h"
 #include "condition_victoire_partie.h"
-<<<<<<< HEAD
-#include "pousse.h"
-
-=======
 #include "piece_siam.h"
->>>>>>> ayet2
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
@@ -16,14 +12,10 @@
 
 int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_deplacement orientation_pousse)
 {
-<<<<<<< HEAD
-   
-=======
   assert(plateau!=NULL);
   assert(orientation_pousse!=aucune_orientation);
   assert(coordonnees_etre_dans_plateau(x,y));
   assert(piece_etre_animal(plateau_obtenir_piece_info(plateau,x,y)));
->>>>>>> ayet2
  /*
   * algorthime
   * 

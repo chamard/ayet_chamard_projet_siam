@@ -14,4 +14,5 @@ plateau_modification.o
 plateau_siam.o
 type_piece.o
 pousse.o
+jeu_siam
 .DS_Store
