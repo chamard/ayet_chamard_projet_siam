@@ -13,7 +13,7 @@ int coordonnees_etre_dans_plateau(int x,int y)
 
 int coordonnees_etre_bordure_plateau(int x,int y)
 {
-  if(x==0||y==0||x==NBR_CASES||y==NBR_CASES)
+  if(x==0||y==0||x==NBR_CASES-1||y==NBR_CASES-1)
     return 1;
   else  
     return 0;

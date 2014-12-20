@@ -41,7 +41,7 @@ void mode_interactif_lancer()
 
     mode_interactif_sauvegarder_jeu_fichier(&jeu);
 
-    char buffer_ligne_commande[MAX_NOM_FICHIER_TAILLE];
+    char buffer_ligne_commande[MAX_NOM_FICHIER_TAILLE]; // MAX_NOM_FICHIER_TAILLE est en  définie globalement (#define) dans le .h
 
     do
     {
@@ -49,10 +49,10 @@ void mode_interactif_lancer()
         jeu_afficher(&jeu);
 
         printf("> ");
-        fflush(stdout);
+        fflush(stdout); // Vide la sortie du buffer si jamais elle n'as pas le temps de se vider après le printf 
 
-        fgets(buffer_ligne_commande,MAX_LIGNE_COMMANDE,stdin);
-        ligne_de_commande_parser(buffer_ligne_commande,&action);
+        fgets(buffer_ligne_commande,MAX_LIGNE_COMMANDE,stdin); // stdin est l'entrée du buffer elle correspond à ce qu'a entrée l'utilisateur.fgets va copier cette entrée dans buffer_ligne_commande
+        ligne_de_commande_parser(buffer_ligne_commande,&action);// Traduire la commande rentré par l'utilisateur en action machine. 
         switch(action.type_action)
         {
         case deplacement:
