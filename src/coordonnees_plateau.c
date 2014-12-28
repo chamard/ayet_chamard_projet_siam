@@ -35,7 +35,7 @@ void coordonnees_appliquer_deplacement(int* x,int* y,orientation_deplacement ori
     {
     case haut:
         *y+=1;
-        break;
+        break;    
     case bas:
         *y-=1;
         break;

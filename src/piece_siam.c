@@ -28,7 +28,7 @@ void piece_initialiser(piece_siam* piece)
 int piece_etre_animal(const piece_siam* piece)
 {
   assert(piece!=NULL||piece_etre_integre(piece)==0);
-  if(piece->type==elephant || piece->type==rhinoceros)
+  if(type_etre_animal(piece->type))
     return 1;
   else
     return 0;
