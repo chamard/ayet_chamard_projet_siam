@@ -36,6 +36,13 @@ void mode_interactif_lancer()
     jeu_siam jeu;
     jeu_initialiser(&jeu);
 
+    //ajout pour tests*******************************
+
+    //jeu.plateau.piece[1][3].type=rhinoceros;
+    //jeu.plateau.piece[1][3].orientation=bas;
+    
+    //**************************************************
+
     action_a_realiser action;
     action_initialiser(&action);
 

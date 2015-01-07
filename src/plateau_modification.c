@@ -16,10 +16,8 @@ int plateau_modification_introduire_piece_etre_possible(const plateau_siam* plat
 {
     //preconditions
     assert(plateau!=NULL);
-    assert(coordonnees_etre_bordure_plateau(x,y));
     assert(plateau_etre_integre(plateau));
     assert(orientation_etre_integre_deplacement(orientation));
- 
 
     //Algorithme:
     //
@@ -27,11 +25,35 @@ int plateau_modification_introduire_piece_etre_possible(const plateau_siam* plat
     // 2- Vérifie si la case est vide 
     // 3- Vérifie si la pousse est possible
     //
-    
+    if(coordonnees_etre_bordure_plateau(x,y)==0)
+      return 0;
     if(plateau_denombrer_type(plateau,type)==5)
       return 0;
     if(plateau_obtenir_piece_info(plateau,x,y)->type==case_vide)
       return 1;
+
+    switch(orientation)
+    {
+    case haut:
+      if(y!=NBR_CASES-1)
+        return 0; 
+    break;
+    case bas:
+      if(y!=4)
+        return 0;
+    break;
+    case droite:
+      if(x!=0)
+        return 0;
+    break;
+    case gauche:
+      if(x!=NBR_CASES-1)
+        return 0;
+    break;
+    default:
+    break;
+    }
+    
     if(poussee_etre_valide(plateau,x,y,orientation))
       return 1;
     else
@@ -47,6 +69,7 @@ void plateau_modification_introduire_piece(plateau_siam* plateau,
 {
     //preconditions
     assert(plateau!=NULL);
+    assert(condition_victoire!=NULL);
     assert(coordonnees_etre_bordure_plateau(x,y));
     assert(plateau_etre_integre(plateau));
     assert(orientation_etre_integre_deplacement(orientation));
@@ -69,7 +92,6 @@ void plateau_modification_introduire_piece(plateau_siam* plateau,
     //Post conditions
     assert(piece_etre_animal(piece));
     assert(plateau_etre_integre(plateau));
-    assert(condition_victoire_etre_victorieux(condition_victoire));
 
     condition_victoire_afficher(condition_victoire);
      
@@ -145,11 +167,22 @@ int plateau_modification_deplacer_piece_etre_possible(const plateau_siam* platea
     assert(plateau_etre_integre(plateau));
     assert(orientation_etre_integre_deplacement(orientation));
     assert(orientation_etre_integre_deplacement(direction_deplacement));
-    assert(coordonnees_etre_dans_plateau(x0,y0));
-
 
     //Algorithme:
     //
+    //coordonnees_appliquer_deplacement(&x0,&y0,orientation);
+    if(piece_etre_integre(plateau_obtenir_piece_info(plateau,x0,y0))==0)
+      return 0;
+    if(piece_etre_animal(plateau_obtenir_piece_info(plateau,x0,y0))==0)
+      return 0;
+    if(coordonnees_etre_dans_plateau(x0,y0)==0)
+      return 0;
+    coordonnees_appliquer_deplacement(&x0,&y0,direction_deplacement);
+    if(coordonnees_etre_dans_plateau(x0,y0)==0)
+      return 1;
+    if(plateau_obtenir_piece_info(plateau,x0,y0)->type==case_vide)
+      return 1;
+    
     if(poussee_etre_valide(plateau,x0,y0,direction_deplacement))
       return 1;
     else  
@@ -172,47 +205,35 @@ void plateau_modification_deplacer_piece(plateau_siam* plateau,
    assert(plateau_modification_deplacer_piece_etre_possible(plateau,x0,y0,direction_deplacement,plateau->piece[x0][y0].orientation));
    
    //Algorithme
+
    
    int x1=x0,y1=y0;
 
    coordonnees_appliquer_deplacement(&x1,&y1,direction_deplacement);
 
-   if(plateau_obtenir_piece_info(plateau,x1,y1)->type==case_vide)
-   {
-      plateau->piece[x1][y1].type=plateau->piece[x0][y0].type;
-      plateau->piece[x1][y1].orientation=orientation_final;
-
-      plateau->piece[x0][y0].type=case_vide;
-      plateau->piece[x1][y1].orientation=aucune_orientation;
-
+   if(coordonnees_etre_dans_plateau(x1,y1)==0){
+      plateau_obtenir_piece(plateau,x0,y0)->type=case_vide;
+      plateau_obtenir_piece(plateau,x0,y0)->orientation=aucune_orientation;
    }
    else
    {
-      poussee_realiser(plateau,x0,y0,plateau_obtenir_piece(plateau,x0,y0)->type,direction_deplacement,condition_victoire);
+     if(plateau_obtenir_piece_info(plateau,x1,y1)->type==case_vide)
+     {
+        plateau_obtenir_piece(plateau,x1,y1)->type=plateau->piece[x0][y0].type;
+        plateau_obtenir_piece(plateau,x1,y1)->orientation=orientation_final;
+
+        plateau_obtenir_piece(plateau,x0,y0)->type=case_vide;
+        plateau_obtenir_piece(plateau,x0,y0)->orientation=aucune_orientation;
+
+     }
+     else
+     { 
+        poussee_realiser(plateau,x1,y1,plateau_obtenir_piece(plateau,x0,y0)->type,direction_deplacement,condition_victoire);
+     }
    }
       
    //Post conditions
    assert(plateau_etre_integre(plateau));
-   assert(piece_etre_animal(&plateau->piece[x1][y1]));
-   assert(condition_victoire_etre_victorieux(condition_victoire));
-
-   condition_victoire_afficher(condition_victoire);
-}
-
-void test_plateau_modification_changer_orientation_piece_etre_possible()
-{
-    puts("plateau_modification_changer_orientation_piece_etre_possible");
-    
-    plateau_siam plateau_test;
-    plateau_initialiser(&plateau_test);
-
-   
-    plateau_test.piece[0][0].type=rhinoceros;
-    plateau_test.piece[0][0].orientation=haut;
-    if(plateau_modification_changer_orientation_piece_etre_possible(&plateau_test,0,0,bas)==1)
-	    puts("***OK***");
-    if(plateau_modification_changer_orientation_piece_etre_possible(&plateau_test,0,0,haut)==0)
-	    puts("***OK***");
-    if(plateau_modification_changer_orientation_piece_etre_possible(&plateau_test,0,1,bas)==0)
-	    puts("***OK***");   
+   if(condition_victoire_etre_victorieux(condition_victoire))
+      condition_victoire_afficher(condition_victoire);
 }

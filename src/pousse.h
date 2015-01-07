@@ -68,4 +68,4 @@ int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_dep
  * 
  *
  */
-  plateau_siam poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orientation_deplacement orientation,condition_victoire_partie* condition);
+  void poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orientation_deplacement orientation,condition_victoire_partie* condition);

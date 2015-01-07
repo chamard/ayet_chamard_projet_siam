@@ -22,7 +22,7 @@ coup_jeu api_siam_tenter_introduire_nouvelle_piece_si_possible(jeu_siam* jeu,
     
     plateau_modification_introduire_piece(&jeu->plateau,x,y,jeu_obtenir_type_animal_courant(jeu),orientation,&coup.condition_victoire);
     coup.valide=1;
-    
+    jeu_changer_joueur(jeu);   
     return coup;
 }
 
@@ -35,16 +35,23 @@ coup_jeu api_siam_tenter_deplacer_piece_si_possible(jeu_siam* jeu,
 { 
     coup_jeu coup;
     coup_jeu_initialiser(&coup);
-    
+
+    if(jeu_verifier_type_piece_a_modifier(jeu,x,y)==0)
+    {
+      coup.valide=0;
+      return coup; 
+    }
+
     if(plateau_modification_deplacer_piece_etre_possible(&jeu->plateau,x,y,deplacement,orientation)==0)
     {
       coup.valide=0;
       return coup; 
     }
     else{
-    plateau_modification_deplacer_piece(&jeu->plateau,x,y,deplacement,orientation,&coup.condition_victoire);                    
-    coup.valide=1;
-    return coup;
+      plateau_modification_deplacer_piece(&jeu->plateau,x,y,deplacement,orientation,&coup.condition_victoire);                    
+      coup.valide=1;
+      jeu_changer_joueur(jeu);  
+      return coup;
     }
 }
 
@@ -58,28 +65,28 @@ coup_jeu api_siam_tenter_changer_orientation_piece_si_possible(jeu_siam* jeu,int
     coup_jeu coup;
     coup_jeu_initialiser(&coup);
     
-    coup.valide=1;
-    
      if(jeu_verifier_type_piece_a_modifier(jeu,x,y)==0)
      {
-	coup.valide=0;
-	return coup;
+	       coup.valide=0;
+	       return coup;
      }
      
      if(orientation_etre_integre(orientation)==0)
       {
-	coup.valide=0;
-	return coup;
+	       coup.valide=0;
+	       return coup;
       }
       
       if(plateau_modification_changer_orientation_piece_etre_possible(&jeu->plateau,x,y,orientation) == 0)
       {
-	coup.valide=0;
-	return coup;
+	       coup.valide=0;
+	       return coup;
       }
       
             
       plateau_modification_changer_orientation_piece(&jeu->plateau,x,y,orientation);
+      coup.valide=1;
+      jeu_changer_joueur(jeu);  
       
      return coup;
 }

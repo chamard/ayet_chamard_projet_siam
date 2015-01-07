@@ -20,10 +20,6 @@ int main()
 
     
     mode_interactif_lancer();
-    test_lancer();
-    
-       
-    
-    
-       return 0;
+   
+    return 0;
 }
