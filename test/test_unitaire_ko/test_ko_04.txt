@@ -1,0 +1,9 @@
+#test_unitaire_ko_04
+#
+# test du déplacement d'un rocher
+lit ../test/test_unitaire_ko/test_ko_01_entree.txt
+d 1 0 > ^
+fin
+#Comportement attendu:
+# Ce test verifie que si le joueur 0 correspondant à l'elephant essaye de deplacer un rhinoceros , le mouvement sera invalide.
+

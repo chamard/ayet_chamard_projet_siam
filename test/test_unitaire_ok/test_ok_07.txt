@@ -1,0 +1,9 @@
+#test_unitaire_ok_07
+#
+# test si il est possible de deplacer un elephant en poussant un rocher(lecture d'un fichier d'entree)
+lit ../test/test_unitaire_ok/test_ok_07_entree.txt
+d 2 2 > >
+fin
+#comportement attendu:
+# l'elephant se deplace d'une case et sont orientation est "droite" et le rocher est pousse
+

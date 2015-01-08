@@ -1,0 +1,9 @@
+#test_unitaire_ok_03
+#
+# test si il est possible d'introduire une piece
+i
+n 4 4 v
+fin
+#comportement attendu:
+# introduit un elephant en direction bas en (4,4)
+

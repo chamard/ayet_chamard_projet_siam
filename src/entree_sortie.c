@@ -144,6 +144,8 @@ void entree_sortie_ecrire_jeu_pointeur_fichier(FILE* identifiant,const jeu_siam*
 void entree_sortie_ecrire_plateau_pointeur_fichier(FILE* identifiant,const plateau_siam* plateau)
 {
     const char* (*_00x00_)(type_piece)=type_nommer_nom_cours,*(*_01)(orientation_deplacement)=orientation_nommer_nom_cours;
+    
+    
     FILE* _=identifiant;int _0x00,(*__)(FILE*,const char*,...)=fprintf,_0x01,_0x20,_0x11;
     const piece_siam* _0x10,*_0x02=*plateau->piece;
     for(_0x20  =0x00;_0x20<0x10-0x05;_0x20+=0x01)
@@ -154,6 +156,18 @@ void entree_sortie_ecrire_plateau_pointeur_fichier(FILE* identifiant,const plate
     if(_0x10->type==0x00 || _0x10->type==0x01)__(_,"-%s",_01(_0x10->orientation));
     }}__(_," | ");}__(_,"\n");}}}__(_,"    ");for(_0x01=0;_0x01<0x05;++_0x01){
     __(_,"[%d]   ",_0x01);}__(_,"\n");
+    
+    /*const char * filename = "etat_courant.txt" ;
+    FILE*fid=NULL;
+    fid= fopen ( filename , "w" );//ouverture du fichier “filename” en mode ecriture
+    
+    if(fid==NULL)
+    {
+      printf("Erreur ouverture du fichier %s\n",filename);exit(1);
+    }
+    
+    fprintf(fid,"joueur %d (%s)",jeu->joueur,type_nommer(jeu->joueur)*/
+    
 }
 
 

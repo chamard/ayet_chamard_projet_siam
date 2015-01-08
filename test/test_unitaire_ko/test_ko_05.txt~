@@ -1,0 +1,9 @@
+#test_unitaire_ko_04
+#
+# test du déplacement d'un rocher
+lit ../test/test_unitaire_ko/test_ko_01_entree.txt
+d 1 0 > ^
+fin
+#Comportement attendu:
+# Une case vide n'est pas un objet pouvant être controllé directement par l'utilisateur , le mouvement est invalide.
+

@@ -31,15 +31,15 @@ int plateau_modification_introduire_piece_etre_possible(const plateau_siam* plat
       return 0;
     if(plateau_obtenir_piece_info(plateau,x,y)->type==case_vide)
       return 1;
-
+    
     switch(orientation)
     {
     case haut:
-      if(y!=NBR_CASES-1)
+      if(y!=0)
         return 0; 
     break;
     case bas:
-      if(y!=4)
+      if(y!=NBR_CASES-1)
         return 0;
     break;
     case droite:
@@ -54,8 +54,9 @@ int plateau_modification_introduire_piece_etre_possible(const plateau_siam* plat
     break;
     }
     
-    if(poussee_etre_valide(plateau,x,y,orientation))
-      return 1;
+    if(poussee_etre_valide(plateau,x,y,orientation)){
+
+      return 1;}
     else
       return 0;
 }
@@ -85,7 +86,7 @@ void plateau_modification_introduire_piece(plateau_siam* plateau,
     }
     else
     {
-      poussee_realiser(plateau,x,y,piece->type,orientation,condition_victoire);
+      poussee_realiser(plateau,x,y,type,orientation,condition_victoire);
     }
 
 

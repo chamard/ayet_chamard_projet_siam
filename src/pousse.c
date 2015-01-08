@@ -44,13 +44,17 @@ int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_dep
   while (coordonnees_etre_dans_plateau(x1,y1) && plateau_exister_piece(plateau,x1,y1) && force_poussee>0)
   {
     piece_p = plateau_obtenir_piece_info (plateau,x1,y1);
-
-    if(piece_p -> orientation == orientation_inverser(orientation))
-        force_poussee -= 1;
-    if(piece_p -> orientation == orientation)
-        force_poussee += 1;  
-    if(piece_p -> type == rocher)
-        force_poussee -= 0.99;
+    
+    if(piece_p -> type == rocher){
+        force_poussee -= 0.9;
+    }
+    else{
+      if(piece_p -> orientation == orientation_inverser(orientation))
+	  force_poussee -= 1;
+      if(piece_p -> orientation == orientation)
+	  force_poussee += 1;
+    }
+   
 
     coordonnees_appliquer_deplacement(&x1,&y1,orientation);
   }
@@ -88,7 +92,7 @@ void poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orien
   do
   {
     coordonnees_appliquer_deplacement(&x1,&y1,orientation);
-  }while(coordonnees_etre_dans_plateau(x1,y1) && plateau->piece[x][y].type != case_vide);
+  }while(coordonnees_etre_dans_plateau(x1,y1) && plateau->piece[x1][y1].type != case_vide);
   int x2=x1,
       y2=y1,
       x3=x1,

@@ -1,0 +1,9 @@
+#test_unitaire_ok_05
+#
+# test si il est possible de sortir un elephant (lecture d'un fichier d'entree)
+lit ../test/test_unitaire_ok/test_ok_04_entree.txt
+d 1 0 v >
+fin
+#comportement attendu:
+# l'elephant doit sortir du plateau
+

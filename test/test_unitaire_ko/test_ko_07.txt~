@@ -1,0 +1,9 @@
+#test_unitaire_ko_06
+#
+# test l'interdiction de poussee d'une piece en face a face
+lit ../test/test_unitaire_ko/test_ko_06_entree.txt
+n 4 4 ^
+fin
+#Comportement attendu: Essaye de pousser 3 rhinocéros avec 2 éléphants.
+# 
+
