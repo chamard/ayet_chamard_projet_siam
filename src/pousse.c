@@ -20,9 +20,9 @@ int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_dep
  /*
   * algorthime
   * 
-  * 1. Si l'orientation de pousse et différente de l'orientation de la piece alors pousse invalide
+  * 1. Si l'orientation de pousse est différente de l'orientation de la piece alors pousse invalide
   * 2. Si l'orientation des pieces n'est pas compatible avec une poussé alors pousse invalide
-  * 3. Si la confrontation est impossible (rochers vs pousseurs) alors pousse invalide
+  * 3. Si le rapport de force est défavorable (rochers vs pousseurs) alors pousse invalide
   * 4. Sinon pousse valide
   * 
   */
@@ -32,14 +32,12 @@ int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_dep
       y1 = y;
 
   coordonnees_appliquer_deplacement(&x,&y,orientation_inverser(orientation));
-
   if(coordonnees_etre_dans_plateau(x,y))
   {
     piece_p = plateau_obtenir_piece_info (plateau,x,y);
     if(piece_p -> orientation != orientation)
       return 0;
   }
- 
    
   while (coordonnees_etre_dans_plateau(x1,y1) && plateau_exister_piece(plateau,x1,y1) && force_poussee>0)
   {
@@ -54,11 +52,8 @@ int poussee_etre_valide(const plateau_siam* plateau,int x, int y,orientation_dep
       if(piece_p -> orientation == orientation)
 	  force_poussee += 1;
     }
-   
-
     coordonnees_appliquer_deplacement(&x1,&y1,orientation);
   }
-
 
   if(force_poussee>0)
     return 1;
@@ -78,15 +73,15 @@ void poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orien
   /*
    * algorthime 
    * 
-   * 1. Vérifie si le coup est gagnant
+   * 1. Vérifie si le coup est gagnant et trouver la derniere case à pousser
    * 2. On effectue la pousse
    *      1. Si la derniere pièce poussée n'est pas sur la bordure on la pousse sur la case vide suivante
    *      2. Si le coup n'est pas une insertion on met une case vide
    * 
    */
- 
    
-  int x1=x,y1=y;
+  int x1=x,
+      y1=y;
 
   //On trouve la derniere case poussée
   do
@@ -97,9 +92,8 @@ void poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orien
       y2=y1,
       x3=x1,
       y3=y1;
-
+      
   coordonnees_appliquer_deplacement(&x1,&y1,orientation_inverser(orientation));
-
 
   //1- Il y a un gagnant si la dernière case poussée est un rocher sur une bordure
   int vic=0;

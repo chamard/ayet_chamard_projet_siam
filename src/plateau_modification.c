@@ -22,9 +22,14 @@ int plateau_modification_introduire_piece_etre_possible(const plateau_siam* plat
     //Algorithme:
     //
     // 1- Vérifie si on peut ajouter une piece dans le jeu
+    //           - case dans la bordure
+    //           - moins de 5 pieces pareil
     // 2- Vérifie si la case est vide 
     // 3- Vérifie si la pousse est possible
+    //           - l'orientation de l'introduction est elle compatible avec une pousse
+    //           - la pousse est elle possible?
     //
+    
     if(coordonnees_etre_bordure_plateau(x,y)==0)
       return 0;
     if(plateau_denombrer_type(plateau,type)==5)
@@ -77,6 +82,13 @@ void plateau_modification_introduire_piece(plateau_siam* plateau,
     assert(plateau_modification_introduire_piece_etre_possible(plateau,x,y,type,orientation));
     
     //introduction piece
+    
+    //Algorithme:
+    //
+    // 1- Introduction sans pousse
+    // 2 - Introduction avec pousse
+    //
+    
     piece_siam* piece=plateau_obtenir_piece(plateau,x,y);
 
     if(piece->type==case_vide)
@@ -142,7 +154,6 @@ void plateau_modification_changer_orientation_piece(plateau_siam* plateau,int x0
     assert(coordonnees_etre_dans_plateau(x0,y0));
     assert(plateau_exister_piece(plateau,x0,y0)==1);
     assert(orientation_etre_integre_deplacement(orientation));
-
     assert(plateau_modification_changer_orientation_piece_etre_possible(plateau,x0,y0,orientation));
 
     //changement d'orientation
@@ -171,13 +182,22 @@ int plateau_modification_deplacer_piece_etre_possible(const plateau_siam* platea
 
     //Algorithme:
     //
-    //coordonnees_appliquer_deplacement(&x0,&y0,orientation);
+    // 1. Vérifie si il y a une piece déplaçaple pour la case donnée
+    //       - la case est dans le plateau
+    //       - la piece est un animal integre
+    // 2. Vérifie les coups simples de déplacement possible
+    //       - case hors du plateau
+    //       - case vide
+    // 3. Vérifie si la pousse est possible
+    //
+    
+     if(coordonnees_etre_dans_plateau(x0,y0)==0)
+      return 0;
     if(piece_etre_integre(plateau_obtenir_piece_info(plateau,x0,y0))==0)
       return 0;
     if(piece_etre_animal(plateau_obtenir_piece_info(plateau,x0,y0))==0)
       return 0;
-    if(coordonnees_etre_dans_plateau(x0,y0)==0)
-      return 0;
+    
     coordonnees_appliquer_deplacement(&x0,&y0,direction_deplacement);
     if(coordonnees_etre_dans_plateau(x0,y0)==0)
       return 1;
@@ -206,6 +226,12 @@ void plateau_modification_deplacer_piece(plateau_siam* plateau,
    assert(plateau_modification_deplacer_piece_etre_possible(plateau,x0,y0,direction_deplacement,plateau->piece[x0][y0].orientation));
    
    //Algorithme
+   //
+   // 1. Effectue les coups simples de déplacement possible
+   //       - case hors du plateau
+   //       - case vide
+   // 2. Sinon effectue la pousse
+   //
 
    
    int x1=x0,y1=y0;
