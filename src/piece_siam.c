@@ -5,12 +5,14 @@
 #include <stdio.h>
 #include <string.h>
 
+
+
 int piece_etre_integre(const piece_siam* piece)
 {
     assert(piece!=NULL);
-     if (type_etre_animal(piece->type) && orientation_etre_integre_deplacement(piece->orientation))
-   	    return 1;
-     if (type_etre_integre(piece->type) && piece->orientation==aucune_orientation)
+     if ((piece->type==elephant || piece->type==rhinoceros)&&(piece->orientation==haut || piece->orientation==bas || piece->orientation==gauche || piece->orientation==droite))
+   	return 1;
+     if ((piece->type==rocher || piece->type==case_vide) && (piece->orientation==aucune_orientation))
        return 1;
     
     return 0;
