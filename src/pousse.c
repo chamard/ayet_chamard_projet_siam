@@ -73,7 +73,7 @@ void poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orien
   /*
    * algorthime 
    * 
-   * 1. Vérifie si le coup est gagnant et trouver la derniere case à pousser
+   * 1. Vérifie si le coup est gagnant et trouver la derniere case à pousser (SUPPLEMENT)
    * 2. On effectue la pousse
    *      1. Si la derniere pièce poussée n'est pas sur la bordure on la pousse sur la case vide suivante
    *      2. Si le coup n'est pas une insertion on met une case vide
@@ -95,7 +95,7 @@ void poussee_realiser(plateau_siam* plateau, int x, int y,type_piece type ,orien
       
   coordonnees_appliquer_deplacement(&x1,&y1,orientation_inverser(orientation));
 
-  //1- Il y a un gagnant si la dernière case poussée est un rocher sur une bordure
+  //1- Il y a un gagnant si la dernière case poussée est un rocher sur une bordure (SUPPLEMENT)
   int vic=0;
   if( coordonnees_etre_dans_plateau(x2,y2)==0 && plateau_obtenir_piece(plateau,x1,y1)->type==rocher)
   {

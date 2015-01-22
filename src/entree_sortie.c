@@ -104,10 +104,7 @@ void entree_sortie_ecrire_jeu_fichier(const char* filename,const jeu_siam* jeu)
 
 
 void entree_sortie_lire_jeu_fichier(const char* filename,jeu_siam* jeu)
-{
-    
-    const char* _for="Erreur ouverture fichier %s\n",*_jeu="Erreur lecture numero de ligne",*_while="Jeu invalide lecture fichier %s\n";
-        
+{       
     int i,j,k;
     char * machaine=NULL;
     char * nom1=NULL, *nom2=NULL,*nom3=NULL,*nom4=NULL,*nom5=NULL;
