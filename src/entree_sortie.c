@@ -101,26 +101,49 @@ void entree_sortie_ecrire_jeu_fichier(const char* filename,const jeu_siam* jeu)
 
 
 
+
+
 void entree_sortie_lire_jeu_fichier(const char* filename,jeu_siam* jeu)
 {
-    const char* _0x10="Joueur 0 (elephant)",*_0x01="Joueur 1 (rhinoceros)";
-    const char* ___="[%d] %s | %s | %s | %s | %s |",*_0x00=filename;
-    jeu_siam* __=jeu,_;int *_00x0=&_.joueur;
-    piece_siam (*_0_)(const char*)=piece_correspondre_nom_cours;
-    size_t (*_0x50)(const char*)=strlen;piece_siam* _00x02=*_.plateau.piece,*_0x02,_0x03;
-    int _00x00_,_10x01_=0x00;char _0x100[0x100],_01x10_[0x05][0x100];
+    
     const char* _for="Erreur ouverture fichier %s\n",*_jeu="Erreur lecture numero de ligne",*_while="Jeu invalide lecture fichier %s\n";
-    jeu_initialiser(&_);FILE *_0x100_=fopen(_0x00,"r");assert(_0x100_!=0x00);if(_0x100_==0x00)
-    {printf(_for,_0x00);exit(1);}while(fgets(_0x100,0x100,_0x100_)!=0){_00x00_=0x00;
-    if(_0x50(_0x100)>=011&&strncmp(_0x100,_0x10,0x13)==0x00){*_00x0=0x00;
-    }else if(_0x50(_0x100)>=011&&strncmp(_0x100,_0x01,0x13)
-    ==0x00){*_00x0=0x01;}else if(sscanf(_0x100,___,&_00x00_,
-    0x00[_01x10_],0x01 [_01x10_],0x02[_01x10_],0x03[_01x10_],0x04[_01x10_])
-    ==0x06&&0x08>0x02){if(_00x00_<0x00||_00x00_>0x04){puts(_jeu);abort();}for(_10x01_=0x00;
-    _10x01_<0x05;_10x01_+=0x01){_0x02=&(0x05*_10x01_+_00x00_)[_00x02];_0x03=_0_(_10x01_[_01x10_]);
-    *_0x02=_0x03;}}}if(jeu_etre_integre(&_))*__=_;else printf(_while,_0x00);
-}
-
+        
+    int i,j,k;
+    char * machaine=NULL;
+    char * nom1=NULL, *nom2=NULL,*nom3=NULL,*nom4=NULL,*nom5=NULL;
+    
+    filename = "etat_courant" ; 
+    FILE *fid= NULL ;
+    fid= fopen ( filename , "w" ); 
+    
+        if (fid== NULL ) 
+    {printf ( "Erreur ouverture du fichier %s\n" , filename ); exit (1);}
+    
+    fgets (machaine,50,fid);
+    sscanf(machaine,"%s %d %s",nom1,&k,nom2);
+    jeu->joueur=k;
+    
+    for(j=0;j<NBR_CASES;j++)
+    {
+        fgets (machaine,50,fid);
+        sscanf(machaine,"[%d] %s | %s | %s | %s | %s |",&k,nom1,nom2,nom3,nom4,nom5 ); 
+        
+        for(i=0;i<NBR_CASES;i++)
+        {
+        jeu->plateau.piece[i][k]=piece_correspondre_nom_cours(nom1);
+        jeu->plateau.piece[i][k]=piece_correspondre_nom_cours(nom2);
+        jeu->plateau.piece[i][k]=piece_correspondre_nom_cours(nom3);
+        jeu->plateau.piece[i][k]=piece_correspondre_nom_cours(nom4);
+        jeu->plateau.piece[i][k]=piece_correspondre_nom_cours(nom5);
+        }
+        
+    }
+    
+    int c= fclose (fid);
+        if (c!= 0 ) 
+    {printf ( "Erreur fermeture fichier %s\n" , filename ); exit (1);}
+    
+  }
 
 void entree_sortie_ecrire_jeu_pointeur_fichier(FILE* identifiant,const jeu_siam* jeu)
 {
@@ -137,38 +160,48 @@ void entree_sortie_ecrire_jeu_pointeur_fichier(FILE* identifiant,const jeu_siam*
 
 }
 
-
-
-
-
 void entree_sortie_ecrire_plateau_pointeur_fichier(FILE* identifiant,const plateau_siam* plateau)
 {
-    const char* (*_00x00_)(type_piece)=type_nommer_nom_cours,*(*_01)(orientation_deplacement)=orientation_nommer_nom_cours;
+      
+    assert(identifiant!=NULL);
+    assert(plateau!=NULL);
+    assert(plateau_etre_integre(plateau));
+   
     
+    int i,j;
     
-    FILE* _=identifiant;int _0x00,(*__)(FILE*,const char*,...)=fprintf,_0x01,_0x20,_0x11;
-    const piece_siam* _0x10,*_0x02=*plateau->piece;
-    for(_0x20  =0x00;_0x20<0x10-0x05;_0x20+=0x01)
-    {if(_0x20==0x02){for(_0x00=0x04;_0x00>=0x00;--_0x00)
-    {__(_,"[%d] ",_0x00);for(_0x01=0x00;_0x01<010-03&&05<0x080;++_0x01)
-    {_0x10=&(0x05*_0x01+_0x00)[_0x02];for(_0x11=0;_0x11<0x04+0x04;++_0x11)
-    {if(_0x11==0x05){__(_,"%s",_00x00_(_0x10->type));
-    if(_0x10->type==0x00 || _0x10->type==0x01)__(_,"-%s",_01(_0x10->orientation));
-    }}__(_," | ");}__(_,"\n");}}}__(_,"    ");for(_0x01=0;_0x01<0x05;++_0x01){
-    __(_,"[%d]   ",_0x01);}__(_,"\n");
-    
-    /*const char * filename = "etat_courant.txt" ;
-    FILE*fid=NULL;
-    fid= fopen ( filename , "w" );//ouverture du fichier “filename” en mode ecriture
-    
-    if(fid==NULL)
+    for(i=NBR_CASES-1;i>=0;i--)
     {
-      printf("Erreur ouverture du fichier %s\n",filename);exit(1);
+      fprintf(identifiant,"[%d]",i);
+      for(j=0;j<NBR_CASES;j++)
+      {
+    if(plateau->piece[i][j].type==elephant || plateau->piece[i][j].type==rhinoceros)
+    {
+    fprintf(identifiant," %s",type_nommer_nom_cours(plateau->piece[i][j].type));
+    fprintf(identifiant,"-%s",orientation_nommer_nom_cours(plateau->piece[i][j].orientation));
+    fprintf(identifiant," |");
+    }
+    else
+    {
+    fprintf(identifiant," %s",type_nommer_nom_cours(plateau->piece[i][j].type));
+    fprintf(identifiant," |");
     }
     
-    fprintf(fid,"joueur %d (%s)",jeu->joueur,type_nommer(jeu->joueur)*/
+      }
+      fprintf(identifiant,"\n");
+      }
+      fprintf(identifiant,"    ");
+      for(j=0;j<NBR_CASES;j++)
+      {
+      fprintf(identifiant,"[%d]   ",j);
+    }
+      fprintf(identifiant,"\n");
+    
+      
     
 }
+
+
 
 
 
