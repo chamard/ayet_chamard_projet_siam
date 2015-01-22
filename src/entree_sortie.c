@@ -172,15 +172,15 @@ void entree_sortie_ecrire_plateau_pointeur_fichier(FILE* identifiant,const plate
       fprintf(identifiant,"[%d]",i);
       for(j=0;j<NBR_CASES;j++)
       {
-    if(plateau->piece[i][j].type==elephant || plateau->piece[i][j].type==rhinoceros)
+    if(plateau->piece[j][i].type==elephant || plateau->piece[j][i].type==rhinoceros)
     {
-    fprintf(identifiant," %s",type_nommer_nom_cours(plateau->piece[i][j].type));
-    fprintf(identifiant,"-%s",orientation_nommer_nom_cours(plateau->piece[i][j].orientation));
+    fprintf(identifiant," %s",type_nommer_nom_cours(plateau->piece[j][i].type));
+    fprintf(identifiant,"-%s",orientation_nommer_nom_cours(plateau->piece[j][i].orientation));
     fprintf(identifiant," |");
     }
     else
     {
-    fprintf(identifiant," %s",type_nommer_nom_cours(plateau->piece[i][j].type));
+    fprintf(identifiant," %s",type_nommer_nom_cours(plateau->piece[j][i].type));
     fprintf(identifiant," |");
     }
     
